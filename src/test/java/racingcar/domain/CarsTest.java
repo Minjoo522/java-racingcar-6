@@ -57,8 +57,49 @@ public class CarsTest {
     @DisplayName("[Success] 차량 position들을 순서대로 반환한다.")
     @Test
     void getCarPositions() {
-        List<Car> carsList = List.of(new Car("car1"), new Car("car2"));
-        Cars cars = new Cars(carsList);
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+        Cars cars = new Cars(List.of(car1, car2));
+
         when(Randoms.pickNumberInRange(0, 9)).thenReturn(4);
+        car1.tryMove();
+
+        when(Randoms.pickNumberInRange(0, 9)).thenReturn(0);
+        car2.tryMove();
+
+        assertThat(cars.getPositions())
+                .isEqualTo(List.of(1, 0));
+    }
+
+    @DisplayName("[Success] position이 가장 큰 차량을 우승자로 반환한다.")
+    @Test
+    void findWinner() {
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+        Cars cars = new Cars(List.of(car1, car2));
+
+        when(Randoms.pickNumberInRange(0, 9)).thenReturn(4);
+        car1.tryMove();
+
+        when(Randoms.pickNumberInRange(0, 9)).thenReturn(0);
+        car2.tryMove();
+
+        assertThat(cars.findWinner())
+                .isEqualTo(List.of("car1"));
+    }
+
+    @DisplayName("[Success] 공동 우승자가 있는 경우 해당 이름을 모두 반환한다.")
+    @Test
+    void findWinnerBySamePosition() {
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+        Cars cars = new Cars(List.of(car1, car2));
+
+        when(Randoms.pickNumberInRange(0, 9)).thenReturn(4);
+        car1.tryMove();
+        car2.tryMove();
+
+        assertThat(cars.findWinner())
+                .isEqualTo(List.of("car1", "car2"));
     }
 }
