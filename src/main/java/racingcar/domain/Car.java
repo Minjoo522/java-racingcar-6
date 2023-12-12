@@ -8,7 +8,7 @@ public class Car {
 
     public Car(String name) {
         validate(name);
-        this.name = name;
+        this.name = name.trim();
     }
 
     private void validate(String name) {
