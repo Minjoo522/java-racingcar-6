@@ -12,7 +12,7 @@ public class Car {
     }
 
     private void validate(String name) {
-        if (name.trim().isEmpty() || name.length() < MAXIMUM_CAR_NAME_SIZE.getValue()) {
+        if (name.trim().isEmpty() || name.length() > MAXIMUM_CAR_NAME_SIZE.getValue()) {
             throw new IllegalArgumentException("차 이름은 한 글자 이상 5자 이하여야 합니다.");
         }
     }
