@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 import static racingcar.config.GameConfig.MAXIMUM_CAR_NAME_SIZE;
+import static racingcar.config.GameConfig.MOVE_MINIMUM_THRESHOLD;
 
 import racingcar.service.RandomNumberGenerator;
 
@@ -21,7 +22,7 @@ public class Car implements Comparable<Car> {
 
     public void tryMove() {
         int randomNumber = RandomNumberGenerator.generate();
-        if (randomNumber >= 4) {
+        if (randomNumber >= MOVE_MINIMUM_THRESHOLD.getValue()) {
             position++;
         }
     }

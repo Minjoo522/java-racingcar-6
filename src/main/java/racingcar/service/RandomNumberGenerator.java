@@ -1,5 +1,8 @@
 package racingcar.service;
 
+import static racingcar.config.GameConfig.MAXIMUM_RANDOM_NUMBER;
+import static racingcar.config.GameConfig.MINIMUM_RANDOM_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class RandomNumberGenerator {
@@ -8,6 +11,6 @@ public class RandomNumberGenerator {
     }
 
     public static int generate() {
-        return Randoms.pickNumberInRange(0,9);
+        return Randoms.pickNumberInRange(MINIMUM_RANDOM_NUMBER.getValue(),MAXIMUM_RANDOM_NUMBER.getValue());
     }
 }

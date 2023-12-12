@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import static racingcar.config.GameConfig.MINIMUM_TRY_NUMBER;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
@@ -45,7 +47,7 @@ public class InputView {
     }
 
     private static void validatePositiveNumber(String input) {
-        if (parseToInt(input) < 1) {
+        if (parseToInt(input) < MINIMUM_TRY_NUMBER.getValue()) {
             throw new IllegalArgumentException("시도할 횟수는 1 이상이어야 합니다.");
         }
     }
