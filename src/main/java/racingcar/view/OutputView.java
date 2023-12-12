@@ -8,11 +8,27 @@ public class OutputView {
     }
 
     public static void printRoundResultSubject() {
-        System.out.println("실행 결과");
+        System.out.println(Message.ROUND_RESULT_SUBJECT.message);
     }
 
     public static void printRoundResult(List<String> result) {
         result.forEach(System.out::println);
         System.out.println();
+    }
+
+    public static void printWinner(String result) {
+        System.out.print(Message.FINAL_RESULT_SUBJECT.message);
+        System.out.println(result);
+    }
+
+    private enum Message {
+        ROUND_RESULT_SUBJECT("실행 결과"),
+        FINAL_RESULT_SUBJECT("최종 우승자 : ");
+
+        private final String message;
+
+        Message(String message) {
+            this.message = message;
+        }
     }
 }

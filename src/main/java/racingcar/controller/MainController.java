@@ -10,7 +10,9 @@ public class MainController {
     public void run() {
         Cars cars = new Cars(InputView.readCarNames());
         int tryTimes = InputView.readTryTimes();
+
         runRounds(cars, tryTimes);
+        OutputView.printWinner(Result.getWinner(cars));
     }
 
     private void runRounds(Cars cars, int tryTimes) {
