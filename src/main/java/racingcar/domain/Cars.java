@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.config.ErrorMessage.DUPLICATED_NAME;
+import static racingcar.config.ErrorMessage.INVALID_CARS_SIZE;
 import static racingcar.config.GameConfig.MINIMUM_CARS_NUMBER;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class Cars {
 
     private void validateSize(List<String> carNames) {
         if (carNames.size() < MINIMUM_CARS_NUMBER.getValue()) {
-            throw new IllegalArgumentException("자동차는 2대 이상이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_CARS_SIZE.getMessage());
         }
     }
 
@@ -29,7 +31,7 @@ public class Cars {
                 .distinct()
                 .count();
         if (uniqueName != carNames.size()) {
-            throw new IllegalArgumentException("중복된 이름을 입력할 수 없습니다");
+            throw new IllegalArgumentException(DUPLICATED_NAME.getMessage());
         }
     }
 

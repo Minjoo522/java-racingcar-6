@@ -1,5 +1,6 @@
 package racingcar.domain;
 
+import static racingcar.config.ErrorMessage.INVALID_CAR_NAME_SIZE;
 import static racingcar.config.GameConfig.MAXIMUM_CAR_NAME_SIZE;
 import static racingcar.config.GameConfig.MOVE_MINIMUM_THRESHOLD;
 
@@ -16,7 +17,7 @@ public class Car implements Comparable<Car> {
 
     private void validate(String name) {
         if (name.trim().isEmpty() || name.length() > MAXIMUM_CAR_NAME_SIZE.getValue()) {
-            throw new IllegalArgumentException("차 이름은 한 글자 이상 5자 이하여야 합니다.");
+            throw new IllegalArgumentException(INVALID_CAR_NAME_SIZE.getMessage());
         }
     }
 

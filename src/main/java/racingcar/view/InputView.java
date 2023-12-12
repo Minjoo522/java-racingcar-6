@@ -1,5 +1,8 @@
 package racingcar.view;
 
+import static racingcar.config.ErrorMessage.NOT_EMPTY;
+import static racingcar.config.ErrorMessage.NOT_NUMBER;
+import static racingcar.config.ErrorMessage.INVALID_TRY_NUMBER;
 import static racingcar.config.GameConfig.MINIMUM_TRY_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -29,7 +32,7 @@ public class InputView {
 
     private static void validateNotEmpty(String input) {
         if (input.trim().isEmpty()) {
-            throw new IllegalArgumentException("공백을 입력할 수 없습니다.");
+            throw new IllegalArgumentException(NOT_EMPTY.getMessage());
         }
     }
 
@@ -42,13 +45,13 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
         }
     }
 
     private static void validatePositiveNumber(String input) {
         if (parseToInt(input) < MINIMUM_TRY_NUMBER.getValue()) {
-            throw new IllegalArgumentException("시도할 횟수는 1 이상이어야 합니다.");
+            throw new IllegalArgumentException(INVALID_TRY_NUMBER.getMessage());
         }
     }
 
