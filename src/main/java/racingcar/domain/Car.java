@@ -4,7 +4,7 @@ import static racingcar.config.GameConfig.MAXIMUM_CAR_NAME_SIZE;
 
 import racingcar.service.RandomNumberGenerator;
 
-public class Car {
+public class Car implements Comparable<Car> {
     private final String name;
     private int position = 0;
 
@@ -32,5 +32,14 @@ public class Car {
 
     public int getPosition() {
         return position;
+    }
+
+    @Override
+    public int compareTo(Car other) {
+        return this.position - other.position;
+    }
+
+    public boolean isSamePosition(Car other) {
+        return this.position == other.position;
     }
 }

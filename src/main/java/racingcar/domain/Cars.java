@@ -56,4 +56,22 @@ public class Cars {
                 .map(Car::getPosition)
                 .toList();
     }
+
+    public List<String> findWinner() {
+        final Car highestPositionCar = findHighestPositionCar();
+        return findSamePositionCar(highestPositionCar);
+    }
+
+    private Car findHighestPositionCar() {
+        return cars.stream()
+                .max(Car::compareTo)
+                .orElseThrow(IllegalAccessError::new);
+    }
+
+    private List<String> findSamePositionCar(Car highestPositionCar) {
+        return cars.stream()
+                .filter(highestPositionCar::isSamePosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
 }
