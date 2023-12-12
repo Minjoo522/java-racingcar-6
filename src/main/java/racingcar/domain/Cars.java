@@ -38,4 +38,22 @@ public class Cars {
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
+
+    public void playOneRound() {
+        for (Car car : cars) {
+            car.tryMove();
+        }
+    }
+
+    public List<String> getNames() {
+        return cars.stream()
+                .map(Car::getName)
+                .toList();
+    }
+
+    public List<Integer> getPositions() {
+        return cars.stream()
+                .map(Car::getPosition)
+                .toList();
+    }
 }
