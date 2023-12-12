@@ -10,35 +10,30 @@ import java.util.stream.Collectors;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(List<String> carNames) {
-        validate(carNames);
-        cars = createCars(carNames);
+    public Cars(List<Car> cars) {
+        validate(cars);
+        this.cars = cars;
     }
 
-    private void validate(List<String> carNames) {
-        validateSize(carNames);
-        validateDuplicate(carNames);
+    private void validate(List<Car> cars) {
+        validateSize(cars);
+        validateDuplicate(cars);
     }
 
-    private void validateSize(List<String> carNames) {
-        if (carNames.size() < MINIMUM_CARS_NUMBER.getValue()) {
+    private void validateSize(List<Car> cars) {
+        if (cars.size() < MINIMUM_CARS_NUMBER.getValue()) {
             throw new IllegalArgumentException(INVALID_CARS_SIZE.getMessage());
         }
     }
 
-    private void validateDuplicate(List<String> carNames) {
-        long uniqueName = carNames.stream()
+    private void validateDuplicate(List<Car> cars) {
+        long uniqueName = cars.stream()
+                .map(Car::getName)
                 .distinct()
                 .count();
-        if (uniqueName != carNames.size()) {
+        if (uniqueName != cars.size()) {
             throw new IllegalArgumentException(DUPLICATED_NAME.getMessage());
         }
-    }
-
-    private List<Car> createCars(List<String> carNames) {
-        return carNames.stream()
-                .map(Car::new)
-                .collect(Collectors.toList());
     }
 
     public void playOneRound() {
